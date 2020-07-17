@@ -1,0 +1,17 @@
+Assignment 2
+
+Introducing Relational Databases
+
+1)Which field of the customer table is the primary key?
+Ans -: cnum is the primary key in the custoomer table.
+
+2)What is the 4th column of the customer table?
+Ans -: Rating is 4th column.
+
+3)What is another word for row ?for column?
+Ans -:	Row - Tuple,Entity,Opportunuty
+	column - Attribute,Method
+
+4)Why isn't it possible to see the first five rows of a table?
+Ans -: The rows are not stored in sequentially in memory of data base. So it will search according to row addrest,thats Why isn't it possible to see the first five rows of a table.  
+
