@@ -1,0 +1,87 @@
+Exercise 1
+
+show databases;
+create database sql_exe1;
+use sql_exe1;
+
+1)
+create table semp
+(
+	empno char(4),
+	empname char(20),
+	basics float(9,2),
+	deptno char(2),
+	depthead char(4)
+);
+
+2)
+create table sdept
+(
+	deptno char(2),
+	deptname char(15)
+);
+
+3)
+insert into sdept(deptno,deptname)values
+('10','Development'),
+('20','Training');
+
+4)
+insert into semp(empno,empname,basics,deptno) values
+('0001','SUNIL',6000,'10'),
+('0002','HIREN',8000,'20');
+insert into semp(empno,empname,basics,deptno,depthead) values
+('0003','ALI',4000,'10','0001');
+insert into semp(empno,empname,basics,depthead) values
+('0004','GEORGE',6000,'0002');
+
+select * from semp;
+select * from sdept;
+
+create table supplier
+(
+	`s#` char(10),
+	sname varchar(10),
+	status int(10),
+	city varchar(10)
+);
+
+create table parts
+(
+	`P#` char(10),
+	pname varchar(10),
+	color varchar(10),
+	weight int(10),
+	city varchar(10)
+);
+
+
+create table projects
+(
+	`J#` char(10),
+	jname varchar(10),
+	city varchar(10)
+);
+
+create table SPJ
+(
+	's#' char(10),
+	`P#` char(10),
+	`J#` char(10),
+	qty int(10)
+);
+
+insert into supplier(`s#`,sname,status,city) values
+('s1','Sushant',10,'Paris'),
+('s2','Tushar',20,'Paris'),
+('s3','Manoj',30,'Athens'),
+('s4','Amol',10,'London');
+
+5)
+select * from supplier;
+6)
+select `s#` , sname from supplier;
+8)
+select * from supplier where city='london';
+9)
+select * from supplier where city='paris' or city='Athens';
