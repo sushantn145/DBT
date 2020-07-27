@@ -1,0 +1,22 @@
+Assignment – 15
+Using Subqueries with DML Commands.
+1) Assume there is a table called Multicust, with all of the same column definitions
+as Salespeople. Write a command that inserts all salespeople with more than one
+customer into this table.
+Ans -:create table multicast as select *from salespeople
+	where snum in (select s.snum  from customers c,salespeople s
+		where c.snum = s.snum
+			group by c.snum
+				having count(c.snum)>1);
+
+2) Write a command that deletes all customers with no current orders.
+Ans -:delete from customers 
+	where cnum not in 
+		(select cnum from orders);
+
+3) Write a command that increases by twenty percent the commissions of all
+salespeople with total orders above Rs. 3,000.
+Ans -:select *,(comm*20/100) "Incresed 20% comm"from  salespeople 
+	where snum in 
+		(select snum from orders
+			where amt>3000);
