@@ -11,5 +11,8 @@ Ans -:select s.sname 1st,m.sname 2nd ,s.city from salespeople s, salespeople m
 
 2) Write a query that produces the names and cities of all customers with the same
 rating as Hoffman.
-Ans -:select c.cname,c.city,c.rating from customers c
-where rating=(select rating from customers where cname='Hoffman');
+Ans -:sol1 - select c.cname,c.city,c.rating from customers c
+		where rating=(select rating from customers where cname='Hoffman');
+		
+	sol2- select  c.cname, c.city, c.rating from customers c, customers m 
+		where c.cname = m.cname and c.rating = (select rating from customers where cname='hoffman');
