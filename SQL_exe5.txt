@@ -1,0 +1,46 @@
+SQL Exercise 5
+1. Display the Supplier name and the Quantity sold.
+Ans -:select s.sname,spj.qty from supplier s,SPJ
+	where s.`s#`=spj.`s#`;
+
+2. Display the Part name and Quantity sold.
+Ans -:select p.pname,spj.qty from parts p,SPJ
+	where p.`p#`=spj.`p#`
+    	group by p.pname;
+
+3. Display the Project name and Quantity sold.
+Ans -:select pro.jname,spj.qty from projects pro,SPJ
+	where pro.`j#`=spj.`j#`;
+
+4. Display the Supplier name, Part name, Project name and Quantity sold.
+Ans -:select sname,pname,jname from supplier s,parts p,projects pro,spj 
+	where spj.`s#`=s.`s#` and spj.`p#`=p.`p#` and pro.`j#`=spj.`j#`; 
+
+5. Display the Supplier name, Supplying Parts to a Project in the same City.
+Ans -:select sname,pname ,parts.city from supplier,parts
+	where supplier.city=parts.city;
+
+6. Display the Part name that is ‘Red’ is color, and the Quantity sold.
+Ans -:select pname,color,qty from spj,parts 
+	where parts.`p#` = (select `p#` from parts where color ='red');
+
+
+7. Display all the Quantity sold by Suppliers with the Status = 20.
+Ans -:select qty from supplier,spj 
+	where spj.`s#` = supplier.`s#` and supplier.status = 20;
+
+8. Display all the Parts and Quantity with a Weight > 14.
+Ans -:select pname ,qty from spj,parts
+	where spj.`p#` = parts.`p#` and parts.weight > 14;
+
+9. Display all the Project names and City, which has bought more than 500 Parts.
+Ans -:select jname,projects.city  from spj,projects,parts
+	where spj.`p#` = parts.`p#` and spj.`j#`=projects.`j#` and spj.qty>500;
+
+10. Display all the Part names and Quantity sold that have a Weight less than 15.
+Ans -:select pname,qty from spj,parts
+	where parts.`p#`=spj.`p#` and weight< 15;
+
+11. Display all the Employee names and the name of their Managers. 
+Ans -:select a.ename,b.ename from emp4 a,emp4 b
+	where a.empno = b.mgr;

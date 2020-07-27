@@ -1,0 +1,63 @@
+SQL Exercise 6
+1. Display all the Suppliers with the same Status as the supplier, ‘CLARK’.
+Ans -:select sname from supplier 
+	where status in 
+		(select status from supplier 
+			where sname='CLARK');
+
+2. Display all the Employees in the same department as the employee ‘MILLER’.
+Ans -:select ename from emp4
+	where deptno=
+		(select deptno from emp4 
+			where ename='MILLER');
+
+3. Display all the Parts which have more Weight than all the Red parts.
+Ans -:select pname from parts 
+	where weight >Any
+		(select weight from parts 
+			where color='RED');
+
+4. Display all the Projects going on in the same city as the project ‘TAPE’.
+Ans -:select jname,city from projects
+	where city in
+		(select city from projects
+			where jname='Tape');
+
+5. Display all the Parts with Weight less than all the Green parts.
+Ans -:select pname from parts
+	where weight <any
+		(select weight from parts
+			where color='Green');
+
+6. Display the name of the Supplier who has sold the maximum Quantity (in one sale).
+Ans-:select sname from supplier
+	where `s#`=
+		(select `s#` from spj 
+			where qty=
+				(select max(qty) from spj));
+
+7. Display the name of the Employee with the minimum Salary.
+Ans -:sol1 --select a.ename from emp4 a,emp4 b
+		where a.empno=b.empno and a.sal=  
+			(select min(sal) from emp4);
+
+      sol2--select ename from emp4
+		where sal=
+			(select min(sal) from emp4);
+
+8. Display the name of the Supplier who has sold the maximum overall Quantity (sum
+of Sales).
+Ans -:select sname, snum, cname from salespeople join customers using(snum) 
+	where snum in 
+		(select snum from customers 
+			group by snum 
+				having count(snum)>1) 
+					order by  sname, cname; 
+
+9. Display the name of the Department with the maximum number of Employees. 
+Ans -:select dname,count(*) from emp4 e,dept d
+	where e.deptno=d.deptno
+		group by d.deptno
+			having count(*)=(select max(max_no) from 
+				(select count(*) max_no from emp4
+					group by deptno) as temp);
